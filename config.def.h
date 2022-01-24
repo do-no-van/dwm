@@ -3,22 +3,23 @@
 #include <X11/XF86keysym.h>
 
 /* appearance */
-static const unsigned int borderpx  = 3;        /* border pixel of windows */
-static const unsigned int snap      = 32;       /* snap pixel */
-static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "FiraCode Nerd Font:size=9" };
-static const char dmenufont[]       = "FiraCode Nerd Font:size=9";
-static const char norm_bg[]         = "#222222";
-static const char norm_border[]     = "#444444";
-static const char norm_fg[]         = "#bbbbbb";
-static const char sel_fg[]          = "#eeeeee";
-static const char sel_bg[]          = "#005577";
-static const char sel_border[]      = "#005577";
-static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { norm_fg, norm_bg, norm_border },
-	[SchemeSel]  = { sel_fg,  sel_bg,  sel_border  },
+static unsigned int borderpx  = 1;        /* border pixel of windows */
+static unsigned int snap      = 32;       /* snap pixel */
+static int showbar            = 1;        /* 0 means no bar */
+static int topbar             = 1;        /* 0 means bottom bar */
+static char font[]            = "monospace:size=10";
+static char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { font };
+static char normbgcolor[]           = "#222222";
+static char normbordercolor[]       = "#444444";
+static char normfgcolor[]           = "#bbbbbb";
+static char selfgcolor[]            = "#eeeeee";
+static char selbordercolor[]        = "#005577";
+static char selbgcolor[]            = "#005577";
+static char *colors[][3] = {
+       /*               fg           bg           border   */
+       [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
+       [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
 };
 
 /* tagging */
@@ -35,9 +36,9 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.50; /* factor of master area size [0.05..0.95] */
-static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static int nmaster     = 1;    /* number of clients in master area */
+static int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
@@ -61,8 +62,28 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", norm_bg, "-nf", norm_fg, "-sb", sel_bg, "-sf", sel_fg, NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
+
+/*
+ * Xresources preferences to load at startup
+ */
+ResourcePref resources[] = {
+		{ "font",               STRING,  &font },
+		{ "dmenufont",          STRING,  &dmenufont },
+		{ "normbgcolor",        STRING,  &normbgcolor },
+		{ "normbordercolor",    STRING,  &normbordercolor },
+		{ "normfgcolor",        STRING,  &normfgcolor },
+		{ "selbgcolor",         STRING,  &selbgcolor },
+		{ "selbordercolor",     STRING,  &selbordercolor },
+		{ "selfgcolor",         STRING,  &selfgcolor },
+		{ "borderpx",           INTEGER, &borderpx },
+		{ "snap",               INTEGER, &snap },
+		{ "showbar",            INTEGER, &showbar },
+		{ "topbar",             INTEGER, &topbar },
+		{ "nmaster",            INTEGER, &nmaster },
+		{ "resizehints",        INTEGER, &resizehints },
+		{ "mfact",              FLOAT,   &mfact },
+};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -76,8 +97,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,          XK_b,         spawn,          SHCMD("$BROWSER") },
 	{ MODKEY|AltMask,            XK_b,         spawn,          SHCMD("$PRIVATE_BROWSER") },
 	{ MODKEY|ShiftMask,          XK_c,         spawn,          SHCMD("code") },
+	{ MODKEY,                    XK_Return,    spawn,          SHCMD("$TERMINAL") },
 	{ MODKEY,                    XK_d,         spawn,          {.v = dmenucmd } },
-	{ MODKEY,                    XK_Return,    spawn,          {.v = termcmd } },
 	{ MODKEY,                    XK_b,         togglebar,      {0} },
 	{ MODKEY,                    XK_j,         focusstack,     {.i = +1 } },
 	{ MODKEY,                    XK_k,         focusstack,     {.i = -1 } },
@@ -108,8 +129,6 @@ static Key keys[] = {
 	TAGKEYS(                     XK_7,                         6)
 	TAGKEYS(                     XK_8,                         7)
 	TAGKEYS(                     XK_9,                         8)
-	/* { MODKEY|ShiftMask,          XK_q,         quit,           {0} }, */
-	/* { MODKEY|ControlMask|ShiftMask, XK_q,         quit,           {1} }, */ 
 };
 
 /* button definitions */
@@ -119,7 +138,7 @@ static Button buttons[] = {
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
+	{ ClkStatusText,        0,              Button2,        spawn,          SHCMD("$TERMINAL") },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
