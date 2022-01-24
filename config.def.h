@@ -89,6 +89,7 @@ ResourcePref resources[] = {
 		{ "mfact",              FLOAT,   &mfact },
 };
 
+#include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ 0,         XF86XK_AudioRaiseVolume,      spawn,          SHCMD("amixer set Master 5%+") },
@@ -110,9 +111,11 @@ static Key keys[] = {
 	{ MODKEY,                    XK_p,         incnmaster,     {.i = -1 } },
 	{ MODKEY,                    XK_h,         setmfact,       {.f = -0.05} },
 	{ MODKEY,                    XK_l,         setmfact,       {.f = +0.05} },
-	{ MODKEY|Mod4Mask,           XK_h,         incrgaps,       {.i = +1 } },
-	{ MODKEY|Mod4Mask,           XK_l,         incrgaps,       {.i = -1 } },
-	{ MODKEY|Mod4Mask|ShiftMask, XK_0,         defaultgaps,    {0} },
+	{ MODKEY|ShiftMask,          XK_j,         movestack,      {.i = +1 } },
+	{ MODKEY|ShiftMask,          XK_k,         movestack,      {.i = -1 } },
+	{ MODKEY|AltMask,            XK_h,         incrgaps,       {.i = +1 } },
+	{ MODKEY|AltMask,            XK_l,         incrgaps,       {.i = -1 } },
+	{ MODKEY|AltMask|ShiftMask,  XK_0,         defaultgaps,    {0} },
 	{ MODKEY,                    XK_Tab,       zoom,           {0} },
 	{ MODKEY|ShiftMask,          XK_Return,    view,           {0} },
 	{ MODKEY,                    XK_q,         killclient,     {0} },
