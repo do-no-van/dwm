@@ -10,7 +10,6 @@ static const int swallowfloating   = 0;        /* 1 means swallow floating windo
 static const int showbar           = 1;        /* 0 means no bar */
 static const int topbar            = 1;        /* 0 means bottom bar */
 static const char *fonts[]         = { "monospace:size=10", "JoyPixels:pixelsize=10:antialias=true:autohint=true" };
-static const char dmenufont[]      = "monospace:size=10";
 static char normbgcolor[]          = "tmp_val";
 static char normbordercolor[]      = "tmp_val";
 static char normfgcolor[]          = "tmp_val";
@@ -65,7 +64,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
 
 #include "movestack.c"
 static Key keys[] = {
