@@ -13,18 +13,12 @@ static const char *fonts[]         = {
     "FiraCode Nerd Font:pixelsize=13:antialias=true:autohint=true",
     "JoyPixels:pixelsize=10:antialias=true:autohint=true"
 };
-static char normfgcolor[]          = "tmp_val";
-static char normbgcolor[]          = "tmp_val";
-static char normbordercolor[]      = "tmp_val";
-static char selfgcolor[]           = "tmp_val";
-static char selbgcolor[]           = "tmp_val";
-static char selbordercolor[]       = "tmp_val";
-static char *colors[3][3] = {
-       /*                fg            bg           border   */
-       [SchemeNorm]  = { normfgcolor,  normbgcolor, normbordercolor },
-       [SchemeSel]   = { selfgcolor,   selbgcolor,  selbordercolor  },
-       /* third scheme is for unoccupied tags */
-};
+static const char normfgcolor[]     = "#777777";
+static const char normbgcolor[]     = "#222222";
+static const char normbordercolor[] = "#444444";
+static const char selfgcolor[]      = "#eeeeee";
+static const char selbgcolor[]      = "#1965c1";
+static const char selbordercolor[]  = "#0f94d2";
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -68,10 +62,6 @@ static const Layout layouts[] = {
 
 #define STATUSBAR "dwmblocks"
 
-/* commands */
-static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
-
 #include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -87,7 +77,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,          XK_c,         spawn,          SHCMD("code") },
 	{ MODKEY,                    XK_Return,    spawn,          SHCMD("$TERMINAL") },
 	{ MODKEY|ShiftMask,          XK_p,         spawn,          SHCMD("keepassxc") },
-	{ MODKEY,                    XK_d,         spawn,          {.v = dmenucmd } },
+	{ MODKEY,                    XK_d,         spawn,          SHCMD("dmenu_run") },
 	{ MODKEY,                    XK_b,         togglebar,      {0} },
 	{ MODKEY,                    XK_j,         focusstack,     {.i = +1 } },
 	{ MODKEY,                    XK_k,         focusstack,     {.i = -1 } },
