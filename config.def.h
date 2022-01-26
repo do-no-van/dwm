@@ -9,17 +9,21 @@ static const unsigned int gappx    = 7;        /* gap between windows */
 static const int swallowfloating   = 0;        /* 1 means swallow floating windows by default */
 static const int showbar           = 1;        /* 0 means no bar */
 static const int topbar            = 1;        /* 0 means bottom bar */
-static const char *fonts[]         = { "monospace:size=10", "JoyPixels:pixelsize=10:antialias=true:autohint=true" };
+static const char *fonts[]         = {
+    "FiraCode Nerd Font:pixelsize=13:antialias=true:autohint=true",
+    "JoyPixels:pixelsize=10:antialias=true:autohint=true"
+};
 static char normbgcolor[]          = "tmp_val";
 static char normbordercolor[]      = "tmp_val";
 static char normfgcolor[]          = "tmp_val";
-static char selfgcolor[]           = "tmp_val";
 static char selbordercolor[]       = "tmp_val";
 static char selbgcolor[]           = "tmp_val";
+static char unoccfgcolor[]         = "tmp_val";
 static char *colors[][3] = {
-       /*               fg           bg           border   */
-       [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
-       [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
+       /*                fg            bg           border   */
+       [SchemeNorm]  = { normfgcolor,  normbgcolor, normbordercolor },
+       [SchemeSel]   = { normfgcolor,  selbgcolor,  selbordercolor  },
+       [SchemeUnOcc] = { unoccfgcolor, normbgcolor, normbordercolor },
 };
 
 /* tagging */
@@ -64,7 +68,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-nb", normbgcolor, "-nf", unoccfgcolor, "-sb", selbordercolor, "-sf", normfgcolor, NULL };
 
 #include "movestack.c"
 static Key keys[] = {
