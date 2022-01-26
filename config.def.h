@@ -13,17 +13,17 @@ static const char *fonts[]         = {
     "FiraCode Nerd Font:pixelsize=13:antialias=true:autohint=true",
     "JoyPixels:pixelsize=10:antialias=true:autohint=true"
 };
+static char normfgcolor[]          = "tmp_val";
 static char normbgcolor[]          = "tmp_val";
 static char normbordercolor[]      = "tmp_val";
-static char normfgcolor[]          = "tmp_val";
-static char selbordercolor[]       = "tmp_val";
+static char selfgcolor[]           = "tmp_val";
 static char selbgcolor[]           = "tmp_val";
-static char unoccfgcolor[]         = "tmp_val";
-static char *colors[][3] = {
+static char selbordercolor[]       = "tmp_val";
+static char *colors[3][3] = {
        /*                fg            bg           border   */
        [SchemeNorm]  = { normfgcolor,  normbgcolor, normbordercolor },
-       [SchemeSel]   = { normfgcolor,  selbgcolor,  selbordercolor  },
-       [SchemeUnOcc] = { unoccfgcolor, normbgcolor, normbordercolor },
+       [SchemeSel]   = { selfgcolor,   selbgcolor,  selbordercolor  },
+       /* third scheme is for unoccupied tags */
 };
 
 /* tagging */
@@ -70,7 +70,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-nb", normbgcolor, "-nf", unoccfgcolor, "-sb", selbordercolor, "-sf", normfgcolor, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
 
 #include "movestack.c"
 static Key keys[] = {
