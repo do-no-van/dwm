@@ -78,6 +78,8 @@ static Key keys[] = {
 	{ MODKEY,                    XK_Return,    spawn,          SHCMD("$TERMINAL") },
 	{ MODKEY|ShiftMask,          XK_p,         spawn,          SHCMD("keepassxc") },
 	{ MODKEY,                    XK_d,         spawn,          SHCMD("dmenu_run") },
+	{ MODKEY|ShiftMask,          XK_m,         spawn,          SHCMD("mount-partition") },
+	{ MODKEY|AltMask,            XK_m,         spawn,          SHCMD("unmount-partition") },
 	{ MODKEY,                    XK_b,         togglebar,      {0} },
 	{ MODKEY,                    XK_j,         focusstack,     {.i = +1 } },
 	{ MODKEY,                    XK_k,         focusstack,     {.i = -1 } },
