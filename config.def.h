@@ -65,9 +65,9 @@ static const Layout layouts[] = {
 #include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ 0,         XF86XK_AudioRaiseVolume,      spawn,          SHCMD("amixer set Master 5%+") },
-	{ 0,         XF86XK_AudioLowerVolume,      spawn,          SHCMD("amixer set Master 5%-") },
-	{ 0,         XF86XK_AudioMute,             spawn,          SHCMD("amixer set Master toggle") },
+	{ 0,         XF86XK_AudioRaiseVolume,      spawn,          SHCMD("amixer set Master 5%+ && pkill -RTMIN+3 dwmblocks &") },
+	{ 0,         XF86XK_AudioLowerVolume,      spawn,          SHCMD("amixer set Master 5%- && pkill -RTMIN+3 dwmblocks &") },
+	{ 0,         XF86XK_AudioMute,             spawn,          SHCMD("amixer set Master toggle && pkill -RTMIN+3 dwmblocks &") },
 	{ 0,         XF86XK_MonBrightnessUp,       spawn,          SHCMD("xbacklight -inc 15") },
 	{ 0,         XF86XK_MonBrightnessDown,     spawn,          SHCMD("xbacklight -dec 15") },
 	{ 0,                         XK_Print,     spawn,          SHCMD("cd ~/media; scrot --select") },
@@ -78,8 +78,8 @@ static Key keys[] = {
 	{ MODKEY,                    XK_Return,    spawn,          SHCMD("$TERMINAL") },
 	{ MODKEY|ShiftMask,          XK_p,         spawn,          SHCMD("keepassxc") },
 	{ MODKEY,                    XK_d,         spawn,          SHCMD("dmenu_run") },
-	{ MODKEY|ShiftMask,          XK_m,         spawn,          SHCMD("mount-partition") },
-	{ MODKEY|AltMask,            XK_m,         spawn,          SHCMD("unmount-partition") },
+	{ MODKEY|ShiftMask,          XK_m,         spawn,          SHCMD("dmenu-mount") },
+	{ MODKEY|AltMask,            XK_m,         spawn,          SHCMD("dmenu-unmount") },
 	{ MODKEY,                    XK_b,         togglebar,      {0} },
 	{ MODKEY,                    XK_j,         focusstack,     {.i = +1 } },
 	{ MODKEY,                    XK_k,         focusstack,     {.i = -1 } },
