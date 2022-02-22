@@ -71,7 +71,7 @@ static Key keys[] = {
 	{ 0,         XF86XK_MonBrightnessUp,       spawn,          SHCMD("xbacklight -inc 15") },
 	{ 0,         XF86XK_MonBrightnessDown,     spawn,          SHCMD("xbacklight -dec 15") },
 	{ 0,                         XK_Print,     spawn,          SHCMD("cd ~/media; scrot --select") },
-	{ MODKEY,                    XK_BackSpace, spawn,          SHCMD("powermenu") },
+	{ MODKEY,                    XK_BackSpace, spawn,          SHCMD("power-dmenu") },
 	{ MODKEY|ShiftMask,          XK_b,         spawn,          SHCMD("$BROWSER") },
 	{ MODKEY|AltMask,            XK_b,         spawn,          SHCMD("$PRIVATE_BROWSER") },
 	{ MODKEY|ShiftMask,          XK_c,         spawn,          SHCMD("code") },
