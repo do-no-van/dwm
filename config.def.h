@@ -72,6 +72,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,          XK_b,         spawn,          SHCMD("$BROWSER") },
 	{ MODKEY|AltMask,            XK_b,         spawn,          SHCMD("$PRIVATE_BROWSER") },
 	{ MODKEY|ShiftMask,          XK_s,         spawn,          SHCMD("steam") },
+	{ MODKEY|AltMask,            XK_s,         spawn,          SHCMD("dmenu-steam") },
 	{ MODKEY,                    XK_Return,    spawn,          SHCMD("$TERMINAL") },
 	{ MODKEY|ShiftMask,          XK_p,         spawn,          SHCMD("keepassxc") },
 	{ MODKEY,                    XK_d,         spawn,          SHCMD("dmenu_run") },
