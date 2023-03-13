@@ -16,8 +16,8 @@ static const char normfgcolor[]     = "#777777";
 static const char normbgcolor[]     = "#222222";
 static const char normbordercolor[] = "#444444";
 static const char selfgcolor[]      = "#eeeeee";
-static const char selbgcolor[]      = "#1965c1";
-static const char selbordercolor[]  = "#0f94d2";
+static const char selbgcolor[]      = "#663399";
+static const char selbordercolor[]  = "#552288";
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -62,17 +62,19 @@ static const Layout layouts[] = {
 #include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ 0,         XF86XK_AudioRaiseVolume,      spawn,          SHCMD("amixer set Master 5%+ && pkill -RTMIN+3 dwmblocks &") },
-	{ 0,         XF86XK_AudioLowerVolume,      spawn,          SHCMD("amixer set Master 5%- && pkill -RTMIN+3 dwmblocks &") },
+	{ 0,         XF86XK_AudioRaiseVolume,      spawn,          SHCMD("amixer set Master 1%+ && pkill -RTMIN+3 dwmblocks &") },
+	{ 0,         XF86XK_AudioLowerVolume,      spawn,          SHCMD("amixer set Master 1%- && pkill -RTMIN+3 dwmblocks &") },
 	{ 0,         XF86XK_AudioMute,             spawn,          SHCMD("amixer set Master toggle && pkill -RTMIN+3 dwmblocks &") },
 	{ 0,         XF86XK_MonBrightnessUp,       spawn,          SHCMD("xbacklight -inc 15") },
 	{ 0,         XF86XK_MonBrightnessDown,     spawn,          SHCMD("xbacklight -dec 15") },
 	{ 0,                         XK_Print,     spawn,          SHCMD("cd ~/media; scrot --select") },
+    { MODKEY,                    XK_grave,     spawn,          SHCMD("$HOME/.local/bin/toggle-im && pkill -RTMIN+7 dwmblocks &") },
 	{ MODKEY,                    XK_BackSpace, spawn,          SHCMD("slock") },
 	{ MODKEY|ShiftMask,          XK_BackSpace, spawn,          SHCMD("$HOME/.local/bin/dmenu/power-dmenu") },
 	{ MODKEY|ShiftMask,          XK_b,         spawn,          SHCMD("firefox-bin") },
 	{ MODKEY|AltMask,            XK_b,         spawn,          SHCMD("firefox-bin --private-window") },
 	{ MODKEY|ShiftMask,          XK_s,         spawn,          SHCMD("steam") },
+	{ MODKEY|ShiftMask,          XK_g,         spawn,          SHCMD("foxwq") },
 	{ MODKEY|AltMask,            XK_s,         spawn,          SHCMD("$HOME/.local/bin/dmenu/dmenu-steam") },
 	{ MODKEY,                    XK_Return,    spawn,          SHCMD("st") },
 	{ MODKEY|ShiftMask,          XK_p,         spawn,          SHCMD("keepassxc") },
