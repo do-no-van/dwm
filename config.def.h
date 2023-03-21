@@ -74,7 +74,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,          XK_b,         spawn,          SHCMD("firefox-bin") },
 	{ MODKEY|AltMask,            XK_b,         spawn,          SHCMD("firefox-bin --private-window") },
 	{ MODKEY|ShiftMask,          XK_s,         spawn,          SHCMD("steam") },
-	{ MODKEY|ShiftMask,          XK_g,         spawn,          SHCMD("foxwq") },
+	{ MODKEY|ShiftMask,          XK_w,         spawn,          SHCMD("windows") },
 	{ MODKEY|AltMask,            XK_s,         spawn,          SHCMD("$HOME/.local/bin/dmenu/dmenu-steam") },
 	{ MODKEY,                    XK_Return,    spawn,          SHCMD("st") },
 	{ MODKEY|ShiftMask,          XK_p,         spawn,          SHCMD("keepassxc") },
@@ -138,4 +138,3 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
-
