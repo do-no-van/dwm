@@ -76,7 +76,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,          XK_s,         spawn,          SHCMD("steam") },
 	{ MODKEY|ShiftMask,          XK_w,         spawn,          SHCMD("windows") },
 	{ MODKEY,                    XK_g,         spawn,          SHCMD("$HOME/.local/bin/dmenu/dmenu-games") },
-	{ MODKEY,                    XK_Return,    spawn,          SHCMD("st") },
+	{ MODKEY,                    XK_Return,    spawn,          SHCMD("kitty") },
 	{ MODKEY|ShiftMask,          XK_p,         spawn,          SHCMD("keepassxc") },
 	{ MODKEY,                    XK_d,         spawn,          SHCMD("dmenu_run") },
 	{ MODKEY|ShiftMask,          XK_m,         spawn,          SHCMD("$HOME/.local/bin/dmenu/dmenu-mount") },
